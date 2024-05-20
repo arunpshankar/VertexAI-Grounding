@@ -6,6 +6,18 @@ __pycache__/
 # C extensions
 *.so
 
+# .venv 
+.vertexai-grounding
+.vertexai-grounding/
+
+# credentials 
+credentials
+credentials/
+
+# DS Store 
+.DS_Store
+.DS_Store/
+
 # Distribution / packaging
 .Python
 build/
