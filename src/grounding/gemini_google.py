@@ -1,15 +1,15 @@
-from vertexai.preview.generative_models import GenerationResponse
-from vertexai.preview.generative_models import GenerationConfig
-from vertexai.preview.generative_models import GenerativeModel
-from vertexai.preview.generative_models import grounding 
-from vertexai.preview.generative_models import Tool
+from vertexai.generative_models import GenerationResponse
+from vertexai.generative_models import GenerationConfig
+from vertexai.generative_models import GenerativeModel
+from vertexai.generative_models import grounding 
+from vertexai.generative_models import Tool
 from src.config.logging import logger 
 from src.config.setup import *
 from typing import Optional
 
 
 # Constants
-MODEL_NAME = 'gemini-1.0-pro-002'
+MODEL_NAME = 'gemini-1.5-pro-002'
 TEMPERATURE = 0.0  # Gemini temperature can be set between 0 and 2
 MAX_OUTPUT_TOKENS = 8192
 TOP_P = 0.0  # TOP_K is not applicable to Gemini pro 002
@@ -42,7 +42,7 @@ def generate_text_with_grounding_web(prompt: str) -> Optional[GenerationResponse
                 top_p=TOP_P
             ),
         )
-        print(response)
+        logger.info(f"Response => {response}")
         return response
     except Exception as e:
         logger.error(f"Error during text generation: {e}", exc_info=True)
@@ -69,6 +69,6 @@ if __name__ == '__main__':
     generated_response = generate_text_with_grounding_web(query)
     answer = extract_answer_from_response(generated_response)
     if answer is not None:
-        print(answer)
+        logger.info(f"Answer = {answer}")
     else:
-        print("Failed to generate response.")
+        logger.error("Failed to generate response.")
