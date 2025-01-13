@@ -42,6 +42,7 @@ def generate_text_with_grounding_web(prompt: str) -> Optional[GenerationResponse
                 top_p=TOP_P
             ),
         )
+        print(response)
         return response
     except Exception as e:
         logger.error(f"Error during text generation: {e}", exc_info=True)
